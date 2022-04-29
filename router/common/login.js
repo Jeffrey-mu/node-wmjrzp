@@ -5,9 +5,15 @@ router.get('/', (req, res, next) => {
     const sql = `SELECT * FROM \`use\` WHERE name = "${name}" AND psd = "${psd}"`
     db.query(sql, '', (result) => {
         if (result.length) {
-            res.send('登录成功')
+            res.send({
+                code: 200,
+                msg: '登录成功',
+              })
         } else {
-            res.send('密码错误')
+            res.send({
+                code: 400,
+                msg: '登录失败',
+            })
         }
     })
 })
